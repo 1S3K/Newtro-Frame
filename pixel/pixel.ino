@@ -336,6 +336,35 @@ void setFace(int eyeMouseColor, uint8_t faceR, uint8_t faceG, uint8_t faceB) {
     pixels.setPixelColor(202,255,255,255);
 }
 
+else if (eyeMouseColor == 4) {
+      //shocking-eye
+      pixels.setPixelColor(85,255,255,255);
+      pixels.setPixelColor(86,255,255,255);
+      pixels.setPixelColor(90,255,255,255);
+      pixels.setPixelColor(89,255,255,255);
+      pixels.setPixelColor(101,255,255,255);
+      pixels.setPixelColor(102,255,255,255);
+      pixels.setPixelColor(105,255,255,255);
+      pixels.setPixelColor(106,255,255,255);
+    
+      //shocking-mouse
+
+      pixels.setPixelColor(166,255,255,255);
+      pixels.setPixelColor(167,255,255,255);
+      pixels.setPixelColor(168,255,255,255);
+      pixels.setPixelColor(169,255,255,255);
+      
+      pixels.setPixelColor(182,255,255,255);
+      pixels.setPixelColor(183,255,255,255);
+      pixels.setPixelColor(184,255,255,255);
+      pixels.setPixelColor(185,255,255,255);
+
+      pixels.setPixelColor(198,255,255,255);
+      pixels.setPixelColor(199,255,255,255);
+      pixels.setPixelColor(200,255,255,255);
+      pixels.setPixelColor(201,255,255,255);
+ }
+
  
   pixels.show();
 };
@@ -451,19 +480,19 @@ void setup() {
 
 void loop() {
   
-  pixels.clear(); // Set all pixel colors to 'off'
-  pixels.setBrightness(10);
+//  pixels.clear(); // Set all pixel colors to 'off'
+  pixels.setBrightness(3);
 
-  snowingHouse();
+//  snowingHouse();
 
 
    if (Serial.available() > 0) {
-    int x = Serial.parseInt();
-    if (x == 2) {
-        setFace(2, 255, 255, 0);
-    } else if (x==3) {
-        setFace(2, 255, 255, 0);
-    } else if (x==4) {
+    char x = Serial.read();
+    if (x == 'b') {
+        setFace(2, 0, 127, 0);
+    } else if (x == 'c') {
+        setFace(4, 255, 0 ,255);
+    } else if (x == 'd') {
         setFace(3, 255, 0, 0);
     } else {
         setFace(1, 0, 0 ,255);
