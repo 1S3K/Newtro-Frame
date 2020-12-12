@@ -24,7 +24,7 @@ params = {
     'returnFaceAttributes': 'emotion'
 }
 
-arduino = serial.Serial('COM8', 9600)
+arduino = serial.Serial('/dev/cu.usbmodem143101', 9600)
 def toArduino(emo_type):
     # emo_type = emo_type.encode('utf-8')
     arduino.write(emo_type)
@@ -67,8 +67,8 @@ while True:
             recognition(emotion)
             print(emotion)
         
-    cv2.imshow("Camera", frame)
-    if cv2.waitKey(1) > 0: break
+    #cv2.imshow("Camera", frame)
+    #if cv2.waitKey(1) > 0: break
 
 cap.release()
 cv2.destroyAllWindows()
