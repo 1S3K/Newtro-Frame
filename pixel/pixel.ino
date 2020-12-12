@@ -91,119 +91,119 @@ void setBigHeart() {
 
 void setSmallHeart() {
   //first line
-  pixels.setPixelColor(53,255,0,0);
-  pixels.setPixelColor(54,255,0,0);
-  pixels.setPixelColor(57,255,0,0);
-  pixels.setPixelColor(58,255,0,0);
+  pixels.setPixelColor(21,255,0,0);
+  pixels.setPixelColor(22,255,0,0);
+  pixels.setPixelColor(25,255,0,0);
+  pixels.setPixelColor(26,255,0,0);
 
   //second line
-  pixels.setPixelColor(68,255,0,0);
-  pixels.setPixelColor(69,255,0,0);
-  pixels.setPixelColor(70,255,0,0);
-  pixels.setPixelColor(71,255,0,0);
-  pixels.setPixelColor(72,255,0,0);
-  pixels.setPixelColor(73,255,0,0);
-  pixels.setPixelColor(74,255,0,0);
-  pixels.setPixelColor(75,255,0,0);
+  pixels.setPixelColor(36,255,0,0);
+  pixels.setPixelColor(37,255,0,0);
+  pixels.setPixelColor(38,255,0,0);
+  pixels.setPixelColor(39,255,0,0);
+  pixels.setPixelColor(40,255,0,0);
+  pixels.setPixelColor(41,255,0,0);
+  pixels.setPixelColor(42,255,0,0);
+  pixels.setPixelColor(43,255,0,0);
 
   //third line
-  for(int i=83; i<93; i++) {
+  for(int i=51; i<61; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //4th line
-  for(int i=99; i<109; i++) {
+  for(int i=67; i<77; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //5th line
-  for(int i=115; i<125; i++) {
+  for(int i=83; i<93; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //6th line
-  for(int i=132; i<140; i++) {
+  for(int i=100; i<108; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //6th line
-  for(int i=149; i<155; i++) {
+  for(int i=116; i<123; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //th line
-  for(int i=166; i<170; i++) {
+  for(int i=133; i<138; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
-  pixels.setPixelColor(183,255,0,0);  
-  pixels.setPixelColor(184,255,0,0); 
+  pixels.setPixelColor(151,255,0,0);  
+  pixels.setPixelColor(152,255,0,0); 
  
   pixels.show();
 };
 
 void setMiddleHeart() {
   //first line
-  pixels.setPixelColor(37,255,0,0);
-  pixels.setPixelColor(38,255,0,0);
-  pixels.setPixelColor(41,255,0,0);
-  pixels.setPixelColor(42,255,0,0);
+  pixels.setPixelColor(5,255,0,0);
+  pixels.setPixelColor(6,255,0,0);
+  pixels.setPixelColor(9,255,0,0);
+  pixels.setPixelColor(10,255,0,0);
 
   //second line
-  pixels.setPixelColor(52,255,0,0);
-  pixels.setPixelColor(53,255,0,0);
-  pixels.setPixelColor(54,255,0,0);
-  pixels.setPixelColor(55,255,0,0);
-  pixels.setPixelColor(56,255,0,0);
-  pixels.setPixelColor(57,255,0,0);
-  pixels.setPixelColor(58,255,0,0);
-  pixels.setPixelColor(59,255,0,0);
+  pixels.setPixelColor(20,255,0,0);
+  pixels.setPixelColor(21,255,0,0);
+  pixels.setPixelColor(22,255,0,0);
+  pixels.setPixelColor(23,255,0,0);
+  pixels.setPixelColor(24,255,0,0);
+  pixels.setPixelColor(25,255,0,0);
+  pixels.setPixelColor(26,255,0,0);
+  pixels.setPixelColor(27,255,0,0);
 
   //third line
-  for(int i=67; i<77; i++) {
+  for(int i=35; i<45; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //4th line
+  for(int i=50; i<62; i++) {
+    pixels.setPixelColor(i,255,0,0);  
+  }
+
+  //5th line
+  for(int i=66; i<78; i++) {
+    pixels.setPixelColor(i,255,0,0);  
+  }
+
+  //5th line
   for(int i=82; i<94; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
-  //5th line
-  for(int i=98; i<110; i++) {
-    pixels.setPixelColor(i,255,0,0);  
-  }
-
-  //5th line
-  for(int i=114; i<126; i++) {
+  //6th line
+  for(int i=99; i<109; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //6th line
-  for(int i=131; i<141; i++) {
-    pixels.setPixelColor(i,255,0,0);  
-  }
-
-  //6th line
-  for(int i=148; i<156; i++) {
+  for(int i=116; i<124; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   //th line
-  for(int i=165; i<171; i++) {
+  for(int i=133; i<149; i++) {
     pixels.setPixelColor(i,255,0,0);  
   }
 
   
-  pixels.setPixelColor(182,255,0,0);  
-  pixels.setPixelColor(183,255,0,0); 
+  pixels.setPixelColor(150,255,0,0);  
+  pixels.setPixelColor(151,255,0,0); 
   
-  pixels.setPixelColor(184,255,0,0);  
-  pixels.setPixelColor(185,255,0,0); 
+  pixels.setPixelColor(152,255,0,0);  
+  pixels.setPixelColor(153,255,0,0); 
 
 
-  pixels.setPixelColor(199,255,0,0);  
-  pixels.setPixelColor(200,255,0,0); 
+  pixels.setPixelColor(167,255,0,0);  
+  pixels.setPixelColor(168,255,0,0); 
  
   pixels.show();
 };
