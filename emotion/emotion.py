@@ -24,9 +24,9 @@ params = {
     'returnFaceAttributes': 'emotion'
 }
 
-arduino = serial.Serial('/dev/cu.usbmodem143101', 9600)
+arduino = serial.Serial('COM10', 9600)
 def toArduino(emo_type):
-    # emo_type = emo_type.encode('utf-8')
+    emo_type = emo_type.encode('utf-8')
     arduino.write(emo_type)
 
 def recognition(emotion):
@@ -40,13 +40,13 @@ def recognition(emotion):
     surprise = emotion['surprise']
 
     if neutral >= 0.9:
-        toArduino(1)
-    elif happiness >= 0.8:
-        toArduino(2)
-    elif surprise >= 0.85:
-        toArduino(3)
+        toArduino('a')
+    elif happiness >= 0.75:
+        toArduino('b')
+    elif surprise >= 0.8:
+        toArduino('c')
     else:
-        toArduino(4)
+        toArduino('d')
 
 while True:
     ret, frame = cap.read()
@@ -66,9 +66,8 @@ while True:
             emotion = result[0]['faceAttributes']['emotion']
             recognition(emotion)
             print(emotion)
-        
-    #cv2.imshow("Camera", frame)
-    #if cv2.waitKey(1) > 0: break
+    cv2.imshow("Camera", frame)
+    if cv2.waitKey(1) > 0: break
 
 cap.release()
 cv2.destroyAllWindows()
