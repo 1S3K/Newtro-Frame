@@ -1,4 +1,6 @@
 #include <Arduino_APDS9960.h>
+#include <PDM.h>
+#include <Adafruit_NeoPixel.h>
 
 #define PIXEL 0
 #define EQUALIZER 1
@@ -9,6 +11,12 @@
 #define TREE 11
 #define RAINBOW 12
 #define SNOW 13
+
+#define PIN 6
+#define NUMPIXELS 256
+#define BRIGHTNESS 5
+#define SENSITIVITY 400
+#define DELAY 50
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 // 0~15, 31~16, 32~47, 63~48
@@ -75,7 +83,7 @@ void setup() {
 void loop() {
   if (APDS.gestureAvailable()) {
     int gesture = APDS.readGesture();
-    // XXX : if gesture up/down 고려할 필요 없는가?
+    
     switch (gesture) {
       case GESTURE_UP:
         Serial.println("위로!");
@@ -197,8 +205,7 @@ void equalizerMode(){
   pixels.begin();
   pixels.clear();
   pixels.setBrightness(BRIGHTNESS);
-
-  while(1){
+  do {
     // wait for samples to be read
     int v[16] = {0};
     if (samplesRead) {
@@ -217,7 +224,7 @@ void equalizerMode(){
       Serial.print(" ");
     }
     Serial.print("\n");
-
+  
     for(int i=0;i<16;i++){ // i는 막대요
       for(int j=0;j<16;j++){ // j는 층이로다
         if(v[i] > VUlevelMap[j] && i%2 == 1) pixels.setPixelColor(pixelMap[i][j], pixels.Color(C[i][0], C[i][1], C[i][2])); // i인지 j인지 둘중하나.
@@ -228,7 +235,24 @@ void equalizerMode(){
     pixels.show();
     
     delay(DELAY);
-  }
+    if (APDS.gestureAvailable()) {
+    int gesture = APDS.readGesture();
+    
+    switch (gesture) {
+      case GESTURE_UP:
+        Serial.println("위로!");
+        menu=prevMenu(menu);
+        switchMenu(menu);
+        break;
+      case GESTURE_DOWN:
+        Serial.println("아래로!");
+        menu=nextMenu(menu);
+        switchMenu(menu);
+        break;
+      }
+    }
+  } while(menu==EQUALIZER);
+  
 }
 void emotionMode(){
   Serial.println("2.이모션");
