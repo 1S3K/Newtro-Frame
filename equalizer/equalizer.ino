@@ -1,20 +1,11 @@
-/*
-  This example reads audio data from the on-board PDM microphones, and prints
-  out the samples to the Serial console. The Serial Plotter built into the
-  Arduino IDE can be used to plot the audio data (Tools -> Serial Plotter)
-
-  Circuit:
-  - Arduino Nano 33 BLE board
-
-  This example code is in the public domain.
-*/
-
 #include <PDM.h>
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 6
 #define NUMPIXELS 256
-
+#define BRIGHTNESS 5
+#define SENSITIVITY 400
+#define DELAY 50
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 // 0~15, 31~16, 32~47, 63~48
@@ -42,16 +33,11 @@ short sampleBuffer[256];
 volatile int samplesRead;
 
 void setup() {
-  for(int i=0;i<16;i++){
-    VUlevelMap[i] = 200*i;
-    if(i%2 == 1){ // 정방향
-      for(int j=0;j<16;j++){
-        pixelMap[i][j] = i*16 + j;
-      }
-    } else{ // 역방향
-      for(int j=0;j<16;j++){
-        pixelMap[i][j] = (i+1)*16 - j;
-      }
+  for (int i = 0; i < 16; i++){ // 소리경계 설정
+    VUlevelMap[i] = SENSITIVITY * i;
+    for(int j=0;j<16;j++){
+      if(i%2 == 1) pixelMap[i][j] = i*16 + j; // 정방향
+      else pixelMap[i][j] = (i+1)*16 -j; // 역방향
     }
   }
   Serial.begin(9600);
@@ -72,7 +58,7 @@ void setup() {
   }
   pixels.begin();
   pixels.clear();
-  pixels.setBrightness(3);
+  pixels.setBrightness(BRIGHTNESS);
 }
 
 void loop() {
@@ -104,7 +90,7 @@ void loop() {
   }
   pixels.show();
   
-  delay(50);
+  delay(DELAY);
 }
 
 void onPDMdata() {
