@@ -24,7 +24,7 @@ params = {
     'returnFaceAttributes': 'emotion'
 }
 
-arduino = serial.Serial('/dev/cu.usbmodem1431301', 9600)
+arduino = serial.Serial('COM8', 9600)
 def toArduino(emo_type):
     emo_type = emo_type.encode('utf-8')
     arduino.write(emo_type)

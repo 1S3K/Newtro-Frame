@@ -1289,7 +1289,7 @@ void setup() {
 #endif
   // END of Trinket-specific code.
 
-  Serial.begin(9600);
+//  Serial.begin(9600);
   pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 }
 
@@ -1297,22 +1297,25 @@ void loop() {
   
 //  pixels.clear(); // Set all pixel colors to 'off'
   pixels.setBrightness(3);
-
+  setFace(2, 0, 127, 0);
 //  snowingHouse();
 
 
-   if (Serial.available() > 0) {
-    char x = Serial.read();
-    if (x == 'b') {
-        setFace(2, 0, 127, 0);
-    } else if (x == 'c') {
-        setFace(4, 255, 0 ,255);
-    } else if (x == 'd') {
-        setFace(3, 255, 0, 0);
-    } else {
-        setFace(1, 0, 0 ,255);
-    }
-  } 
+//   if (Serial.available() > 0) {
+//    char x = Serial.read();
+//    if (x == 'b') {
+//        setFace(2, 0, 127, 0);
+//        Serial.println(x);
+//    } else if (x == 'c') {
+//        setFace(4, 255, 0 ,255);
+//        Serial.println(x);
+//    } else if (x == 'd') {
+//        setFace(3, 255, 0, 0);
+//        Serial.println(x);
+//    } else {
+//        setFace(1, 0, 0 ,255);
+//        Serial.println(x);
+//    }
+//  }
+} 
 //setAndroidRobot(0, 255, 255);
-  
-}
