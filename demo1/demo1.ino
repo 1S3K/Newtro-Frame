@@ -73,7 +73,6 @@ int pixel = 10;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
   if (!APDS.begin()) {
     Serial.println("APDS9960센서 오류!");
     while (1);
@@ -82,42 +81,46 @@ void setup() {
   Serial.println("제스처 인식 시작!");
 }
 void loop() {
-  if (APDS.gestureAvailable()) {
-    int gesture = APDS.readGesture();
-    
-    switch (gesture) {
-      case GESTURE_UP:
-        Serial.println("위로!");
-        menu=prevMenu(menu);
-        switchMenu(menu);
-        break;
-      case GESTURE_DOWN:
-        Serial.println("아래로!");
-        menu=nextMenu(menu);
-        switchMenu(menu);
-        break;
-      case GESTURE_LEFT:
-        Serial.println("왼쪽으로!");
-        if(menu == PIXEL){
-          pixel=prevPixel(pixel);
-          pixelMode(pixel);
-        }
-        break;
-      case GESTURE_RIGHT:
-        Serial.println("오른쪽으로!");
-        if(menu == PIXEL){
-          pixel=nextPixel(pixel);
-          pixelMode(pixel);
-        }
-        break;
-    }
-  }
+//  if (APDS.gestureAvailable()) {
+//    int gesture = APDS.readGesture();
+//    
+//    switch (gesture) {
+//      case GESTURE_UP:
+//        Serial.println("위로!");
+//        menu=prevMenu(menu);
+//        switchMenu(menu);
+//        break;
+//      case GESTURE_DOWN:
+//        Serial.println("아래로!");
+//        menu=nextMenu(menu);
+//        switchMenu(menu);
+//        break;
+//      case GESTURE_LEFT:
+//        Serial.println("왼쪽으로!");
+//        if(menu == PIXEL){
+//          pixel=prevPixel(pixel);
+//          pixelMode(pixel);
+//        }
+//        break;
+//      case GESTURE_RIGHT:
+//        Serial.println("오른쪽으로!");
+//        if(menu == PIXEL){
+//          pixel=nextPixel(pixel);
+//          pixelMode(pixel);
+//        }
+//        break;
+//    }
+//  }
+  emotionMode();
 }
 
 void switchMenu(int menu){
   if(menu==PIXEL) pixelMode(pixel);
   else if(menu == EQUALIZER) equalizerMode();
-  else if(menu == EMOTION) emotionMode();
+  else if(menu == EMOTION){
+  Serial.println("emotion mode");
+  emotionMode();
+  }
   else if(menu == HEART) heartMode();
 }
 
@@ -793,8 +796,6 @@ void equalizerMode(){
       // 0~15 31~16 
     }
   }
-  Serial.begin(9600);
-  while (!Serial);
 
   // configure the data receive callback
   PDM.onReceive(onPDMdata);
@@ -864,18 +865,38 @@ void equalizerMode(){
 void emotionMode(){
   pixels.clear();
   pixels.setBrightness(BRIGHTNESS);
-  if (Serial.available() > 0) {
-    char x = Serial.read();
-    if (x == 'b') {
-        setFace(2, 0, 127, 0);
-    } else if (x == 'c') {
-        setFace(4, 255, 0 ,255);
-    } else if (x == 'd') {
-        setFace(3, 255, 0, 0);
-    } else {
-        setFace(1, 0, 0 ,255);
+  do{
+    if (Serial.available() > 0) {
+      char x = Serial.read();
+      if (x == 'b') {
+          setFace(2, 0, 127, 0);
+      } else if (x == 'c') {
+          setFace(4, 255, 0 ,255);
+      } else if (x == 'd') {
+          setFace(3, 255, 0, 0);
+      } else {
+          setFace(1, 0, 0 ,255);
+      }
     }
-  }
+   delay(EQUALIZER_DELAY);
+    if (APDS.gestureAvailable()) {
+    int gesture = APDS.readGesture();
+    
+    switch (gesture) {
+      case GESTURE_UP:
+        Serial.println("위로!");
+        menu=prevMenu(menu);
+        switchMenu(menu);
+        break;
+      case GESTURE_DOWN:
+        Serial.println("아래로!");
+        menu=nextMenu(menu);
+        switchMenu(menu);
+        break;
+      }
+    }
+  } while(menu == EMOTION);
+  
 }
 void heartMode(){ // 주작
   pixels.clear();
@@ -1587,4 +1608,3 @@ void qor(int n) {
   }
   pixels.show();
 }
-
